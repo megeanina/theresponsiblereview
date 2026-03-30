@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsible Review - AI Regulation Intelligence</title>
+    <title>Responsible Review - March 30, 2026</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -22,7 +22,7 @@
         .hero-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; }
         .hero h2 { font-size: 1.5rem; margin-bottom: 10px; }
         .hero p { opacity: 0.9; font-size: 0.95rem; }
-        .hero-meta { display: flex; gap: 15px; margin-top: 15px; font-size: 0.85rem; }
+        .hero-meta { display: flex; gap: 15px; margin-top: 15px; font-size: 0.85rem; flex-wrap: wrap; }
         .news-section { padding: 30px; }
         .section-title { font-size: 1.3rem; color: #1e40af; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #e5e7eb; }
         .news-grid { display: grid; gap: 20px; }
@@ -59,17 +59,15 @@
         .priority-low { background: #e5e7eb; color: #374151; }
         .footer { background: #1f2937; color: #9ca3af; padding: 30px; text-align: center; }
         .footer p { font-size: 0.85rem; margin-bottom: 8px; }
-        .footer-links { display: flex; justify-content: center; gap: 20px; margin-top: 15px; }
+        .footer-links { display: flex; justify-content: center; gap: 20px; margin-top: 15px; flex-wrap: wrap; }
         .footer-links a { color: #6b7280; text-decoration: none; font-size: 0.85rem; }
         .footer-links a:hover { color: #9ca3af; }
-        .placeholder-notice { background: #fef3c7; border: 2px dashed #f59e0b; padding: 20px; margin: 20px; border-radius: 8px; text-align: center; }
-        .placeholder-notice h3 { color: #92400e; margin-bottom: 10px; }
-        .placeholder-notice p { color: #78350f; font-size: 0.9rem; }
         @media (max-width: 600px) {
             .header h1 { font-size: 1.8rem; }
             .hero h2 { font-size: 1.2rem; }
             .news-section, .actions-section { padding: 20px; }
             .card-header { flex-direction: column; }
+            .hero-meta { flex-direction: column; gap: 8px; }
         }
     </style>
 </head>
@@ -78,48 +76,115 @@
         <header class="header">
             <h1>🤖 Responsible Review</h1>
             <p class="tagline">AI Regulation Intelligence for UiPath</p>
-            <span class="date-badge">Coming Soon</span>
+            <span class="date-badge">March 30, 2026 | Issue #001</span>
         </header>
         
         <main class="content">
-            <div class="placeholder-notice">
-                <h3>📰 First Issue Coming Soon</h3>
-                <p>We're curating the latest AI regulation news from official sources.<br>
-                Check back for our first newsletter with verified stories and UiPath action items.</p>
-            </div>
+            <section class="hero">
+                <span class="hero-badge">🔥 Top Story</span>
+                <h2>EU AI Act High-Risk Systems Deadline: August 2, 2026</h2>
+                <p>The EU AI Act's main provisions for high-risk AI systems become enforceable on August 2, 2026. All Annex III high-risk AI systems must fully comply before deployment, including conformity assessments, risk management systems, technical documentation, and EU database registration. Non-compliance can result in fines up to €35 million or 7% of global annual turnover.</p>
+                <div class="hero-meta">
+                    <span>📍 EU</span>
+                    <span>⚡ High Impact</span>
+                    <span>📅 Enforcement: August 2, 2026</span>
+                    <span>🔗 <a href="https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai" style="color: white; text-decoration: underline;" target="_blank">Read Official Source</a></span>
+                </div>
+            </section>
             
             <section class="news-section">
-                <h3 class="section-title">📰 Latest Highlights</h3>
+                <h3 class="section-title">📰 Today's Highlights</h3>
                 <div class="news-grid">
-                    <!-- ADD YOUR VERIFIED NEWS STORIES HERE -->
-                    <!-- Template for each story:
                     <article class="news-card eu">
                         <div class="card-header">
-                            <h4 class="card-title">[News Title]</h4>
+                            <h4 class="card-title">EU AI Act High-Risk Systems Compliance Deadline August 2026</h4>
                             <div class="tags">
                                 <span class="tag eu">EU</span>
                                 <span class="tag impact-high">High Impact</span>
                             </div>
                         </div>
-                        <p class="card-summary">[2-3 sentence summary]</p>
-                        <a href="[VERIFIED URL]" class="card-link" target="_blank">Read Official Source →</a>
+                        <p class="card-summary">The EU AI Act's main provisions for high-risk AI systems become enforceable on August 2, 2026. All Annex III high-risk AI systems must fully comply before deployment, including conformity assessments, risk management systems, technical documentation, human oversight, and EU database registration. The European Commission is expected to publish guidelines on Article 6 high-risk criteria by February 2, 2026.</p>
+                        <a href="https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai" class="card-link" target="_blank">Read Official Source →</a>
                     </article>
-                    -->
+                    
+                    <article class="news-card uk">
+                        <div class="card-header">
+                            <h4 class="card-title">UK FCA Launches Mills Review on AI Impact in Financial Services</h4>
+                            <div class="tags">
+                                <span class="tag uk">UK</span>
+                                <span class="tag impact-medium">Medium Impact</span>
+                            </div>
+                        </div>
+                        <p class="card-summary">The UK Financial Conduct Authority launched the "Mills Review" on January 27, 2026, to investigate the long-term impact of AI on financial services, particularly in the retail sector. The call for input concluded on February 24, 2026, with recommendations expected to be presented to the FCA board in summer 2026. The FCA continues to use its principles-based framework rather than creating AI-specific rules.</p>
+                        <a href="https://www.fca.org.uk/publication/corporate/ai-update-march-2026.pdf" class="card-link" target="_blank">Read Official Source →</a>
+                    </article>
+                    
+                    <article class="news-card us">
+                        <div class="card-header">
+                            <h4 class="card-title">NIST Releases Draft Cybersecurity Framework Profile for AI</h4>
+                            <div class="tags">
+                                <span class="tag us">US</span>
+                                <span class="tag impact-medium">Medium Impact</span>
+                            </div>
+                        </div>
+                        <p class="card-summary">NIST released a preliminary draft of the Cybersecurity Framework Profile for Artificial Intelligence (Cyber AI Profile, NIST IR 8596) in February 2026. This extends the NIST Cybersecurity Framework 2.0 to address AI-specific cybersecurity risks and opportunities, working alongside the AI Risk Management Framework. The draft addresses generative AI risks and supply chain security.</p>
+                        <a href="https://www.nist.gov/itl/ai-risk-management-framework" class="card-link" target="_blank">Read Official Source →</a>
+                    </article>
+                    
+                    <article class="news-card international">
+                        <div class="card-header">
+                            <h4 class="card-title">ISO/IEC 42001:2023 Critical for EU AI Act Compliance</h4>
+                            <div class="tags">
+                                <span class="tag international">International</span>
+                                <span class="tag impact-medium">Medium Impact</span>
+                            </div>
+                        </div>
+                        <p class="card-summary">ISO/IEC 42001:2023, the world's first international standard for AI Management Systems, becomes crucial for EU AI Act compliance in 2026. Published in December 2023, this certifiable standard provides a structured framework for organizations to demonstrate systematic compliance with risk management, data governance, technical documentation, and human oversight requirements. Companies without structured AI governance by August 2026 may face compliance violations.</p>
+                        <a href="https://www.iso.org/standard/81230.html" class="card-link" target="_blank">Read Official Source →</a>
+                    </article>
                 </div>
             </section>
             
             <section class="actions-section">
                 <h3 class="section-title">💡 Recommended Actions for UiPath</h3>
                 <ul class="action-list">
-                    <!-- ADD YOUR UIPath ACTION RECOMMENDATIONS HERE -->
+                    <li class="action-item">
+                        <span class="action-icon">✓</span>
+                        <div class="action-content">
+                            <h4>Assess EU AI Act High-Risk Classification for UiPath Products <span class="action-priority priority-high">HIGH</span></h4>
+                            <p>Conduct urgent assessment of Document Understanding, AI Center, and Communications Mining to determine if they fall under Annex III high-risk categories (employment, critical infrastructure, education). Product Legal to lead with Engineering by May 2026. Conformity assessment deadline is August 2, 2026.</p>
+                        </div>
+                    </li>
+                    <li class="action-item">
+                        <span class="action-icon">✓</span>
+                        <div class="action-content">
+                            <h4>Monitor UK FCA Mills Review for Financial Services Impact <span class="action-priority priority-medium">MEDIUM</span></h4>
+                            <p>Track FCA Mills Review recommendations expected summer 2026. Prepare proactive guidance for banking and insurance customers on AI governance alignment with FCA principles-based framework. Customer Success to coordinate with Legal.</p>
+                        </div>
+                    </li>
+                    <li class="action-item">
+                        <span class="action-icon">✓</span>
+                        <div class="action-content">
+                            <h4>Evaluate NIST Cyber AI Profile for Security Integration <span class="action-priority priority-medium">MEDIUM</span></h4>
+                            <p>Review NIST Cyber AI Profile draft (NIST IR 8596) for applicability to UiPath's AI security practices. Assess integration opportunities with existing cybersecurity framework, particularly for generative AI features and supply chain security.</p>
+                        </div>
+                    </li>
+                    <li class="action-item">
+                        <span class="action-icon">✓</span>
+                        <div class="action-content">
+                            <h4>Consider ISO 42001 Certification for Competitive Advantage <span class="action-priority priority-low">LOW</span></h4>
+                            <p>Evaluate feasibility of pursuing ISO/IEC 42001:2023 certification to demonstrate systematic AI governance. This could serve as competitive differentiator for enterprise customers preparing for EU AI Act compliance. Engage Quality and Compliance teams for feasibility assessment.</p>
+                        </div>
+                    </li>
                 </ul>
             </section>
         </main>
         
         <footer class="footer">
             <p>Compiled by <strong>Delegate</strong> | UiPath Agentic Automation</p>
-            <p>Sources: EU Commission, UK FCA, US Government, ISO, IEEE, OECD</p>
+            <p>Sources: EU Commission (europa.eu), UK FCA (fca.org.uk), US NIST (nist.gov), ISO (iso.org)</p>
             <div class="footer-links">
+                <a href="https://megeanina.github.io/theresponsiblereview/" target="_blank">📰 Latest Issue</a>
                 <a href="https://uipath.com" target="_blank">🏢 UiPath</a>
             </div>
         </footer>
