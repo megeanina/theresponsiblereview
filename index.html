@@ -1,193 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsible Review - March 30, 2026</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6; color: #1f2937;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
-        .header { text-align: center; padding: 40px 20px; color: white; }
-        .header h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
-        .header .tagline { font-size: 1.1rem; opacity: 0.9; margin-bottom: 20px; }
-        .date-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 8px 20px; border-radius: 20px; font-size: 0.9rem; backdrop-filter: blur(10px); }
-        .content { background: white; border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); overflow: hidden; }
-        .hero { background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); color: white; padding: 30px; position: relative; }
-        .hero-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; }
-        .hero h2 { font-size: 1.5rem; margin-bottom: 10px; }
-        .hero p { opacity: 0.9; font-size: 0.95rem; }
-        .hero-meta { display: flex; gap: 15px; margin-top: 15px; font-size: 0.85rem; flex-wrap: wrap; }
-        .news-section { padding: 30px; }
-        .section-title { font-size: 1.3rem; color: #1e40af; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #e5e7eb; }
-        .news-grid { display: grid; gap: 20px; }
-        .news-card { background: #f9fafb; border-radius: 12px; padding: 20px; border-left: 4px solid #3b82f6; transition: transform 0.2s, box-shadow 0.2s; }
-        .news-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        .news-card.eu { border-left-color: #2563eb; }
-        .news-card.uk { border-left-color: #dc2626; }
-        .news-card.us { border-left-color: #7c3aed; }
-        .news-card.international { border-left-color: #059669; }
-        .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
-        .card-title { font-size: 1.1rem; font-weight: 600; color: #111827; flex: 1; }
-        .tags { display: flex; gap: 8px; flex-wrap: wrap; }
-        .tag { padding: 4px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; }
-        .tag.eu { background: #dbeafe; color: #1e40af; }
-        .tag.uk { background: #fee2e2; color: #991b1b; }
-        .tag.us { background: #ede9fe; color: #5b21b6; }
-        .tag.international { background: #d1fae5; color: #065f46; }
-        .tag.impact-high { background: #fecaca; color: #991b1b; }
-        .tag.impact-medium { background: #fed7aa; color: #9a3412; }
-        .tag.impact-low { background: #e5e7eb; color: #374151; }
-        .card-summary { color: #4b5563; font-size: 0.95rem; margin-bottom: 12px; }
-        .card-link { display: inline-flex; align-items: center; gap: 6px; color: #2563eb; text-decoration: none; font-size: 0.9rem; font-weight: 500; }
-        .card-link:hover { text-decoration: underline; }
-        .actions-section { background: #f3f4f6; padding: 30px; border-top: 1px solid #e5e7eb; }
-        .actions-section .section-title { color: #059669; }
-        .action-list { list-style: none; }
-        .action-item { background: white; border-radius: 10px; padding: 16px 20px; margin-bottom: 12px; display: flex; align-items: flex-start; gap: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-        .action-icon { width: 24px; height: 24px; background: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.8rem; flex-shrink: 0; margin-top: 2px; }
-        .action-content h4 { font-size: 0.95rem; color: #111827; margin-bottom: 4px; }
-        .action-content p { font-size: 0.85rem; color: #6b7280; }
-        .action-priority { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 600; margin-left: 8px; }
-        .priority-high { background: #fecaca; color: #991b1b; }
-        .priority-medium { background: #fed7aa; color: #9a3412; }
-        .priority-low { background: #e5e7eb; color: #374151; }
-        .footer { background: #1f2937; color: #9ca3af; padding: 30px; text-align: center; }
-        .footer p { font-size: 0.85rem; margin-bottom: 8px; }
-        .footer-links { display: flex; justify-content: center; gap: 20px; margin-top: 15px; flex-wrap: wrap; }
-        .footer-links a { color: #6b7280; text-decoration: none; font-size: 0.85rem; }
-        .footer-links a:hover { color: #9ca3af; }
-        @media (max-width: 600px) {
-            .header h1 { font-size: 1.8rem; }
-            .hero h2 { font-size: 1.2rem; }
-            .news-section, .actions-section { padding: 20px; }
-            .card-header { flex-direction: column; }
-            .hero-meta { flex-direction: column; gap: 8px; }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <header class="header">
-            <h1>🤖 Responsible Review</h1>
-            <p class="tagline">AI Regulation Intelligence for UiPath</p>
-            <span class="date-badge">March 30, 2026 | Issue #001</span>
-        </header>
-        
-        <main class="content">
-            <section class="hero">
-                <span class="hero-badge">🔥 Top Story</span>
-                <h2>EU AI Act High-Risk Systems Deadline: August 2, 2026</h2>
-                <p>The EU AI Act's main provisions for high-risk AI systems become enforceable on August 2, 2026. All Annex III high-risk AI systems must fully comply before deployment, including conformity assessments, risk management systems, technical documentation, and EU database registration. Non-compliance can result in fines up to €35 million or 7% of global annual turnover.</p>
-                <div class="hero-meta">
-                    <span>📍 EU</span>
-                    <span>⚡ High Impact</span>
-                    <span>📅 Enforcement: August 2, 2026</span>
-                    <span>🔗 <a href="https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai" style="color: white; text-decoration: underline;" target="_blank">Read Official Source</a></span>
-                </div>
-            </section>
-            
-            <section class="news-section">
-                <h3 class="section-title">📰 Today's Highlights</h3>
-                <div class="news-grid">
-                    <article class="news-card eu">
-                        <div class="card-header">
-                            <h4 class="card-title">EU AI Act High-Risk Systems Compliance Deadline August 2026</h4>
-                            <div class="tags">
-                                <span class="tag eu">EU</span>
-                                <span class="tag impact-high">High Impact</span>
-                            </div>
-                        </div>
-                        <p class="card-summary">The EU AI Act's main provisions for high-risk AI systems become enforceable on August 2, 2026. All Annex III high-risk AI systems must fully comply before deployment, including conformity assessments, risk management systems, technical documentation, human oversight, and EU database registration. The European Commission is expected to publish guidelines on Article 6 high-risk criteria by February 2, 2026.</p>
-                        <a href="https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai" class="card-link" target="_blank">Read Official Source →</a>
-                    </article>
-                    
-                    <article class="news-card uk">
-                        <div class="card-header">
-                            <h4 class="card-title">UK FCA Launches Mills Review on AI Impact in Financial Services</h4>
-                            <div class="tags">
-                                <span class="tag uk">UK</span>
-                                <span class="tag impact-medium">Medium Impact</span>
-                            </div>
-                        </div>
-                        <p class="card-summary">The UK Financial Conduct Authority launched the "Mills Review" on January 27, 2026, to investigate the long-term impact of AI on financial services, particularly in the retail sector. The call for input concluded on February 24, 2026, with recommendations expected to be presented to the FCA board in summer 2026. The FCA continues to use its principles-based framework rather than creating AI-specific rules.</p>
-                        <a href="https://www.fca.org.uk/publication/corporate/ai-update-march-2026.pdf" class="card-link" target="_blank">Read Official Source →</a>
-                    </article>
-                    
-                    <article class="news-card us">
-                        <div class="card-header">
-                            <h4 class="card-title">NIST Releases Draft Cybersecurity Framework Profile for AI</h4>
-                            <div class="tags">
-                                <span class="tag us">US</span>
-                                <span class="tag impact-medium">Medium Impact</span>
-                            </div>
-                        </div>
-                        <p class="card-summary">NIST released a preliminary draft of the Cybersecurity Framework Profile for Artificial Intelligence (Cyber AI Profile, NIST IR 8596) in February 2026. This extends the NIST Cybersecurity Framework 2.0 to address AI-specific cybersecurity risks and opportunities, working alongside the AI Risk Management Framework. The draft addresses generative AI risks and supply chain security.</p>
-                        <a href="https://www.nist.gov/itl/ai-risk-management-framework" class="card-link" target="_blank">Read Official Source →</a>
-                    </article>
-                    
-                    <article class="news-card international">
-                        <div class="card-header">
-                            <h4 class="card-title">ISO/IEC 42001:2023 Critical for EU AI Act Compliance</h4>
-                            <div class="tags">
-                                <span class="tag international">International</span>
-                                <span class="tag impact-medium">Medium Impact</span>
-                            </div>
-                        </div>
-                        <p class="card-summary">ISO/IEC 42001:2023, the world's first international standard for AI Management Systems, becomes crucial for EU AI Act compliance in 2026. Published in December 2023, this certifiable standard provides a structured framework for organizations to demonstrate systematic compliance with risk management, data governance, technical documentation, and human oversight requirements. Companies without structured AI governance by August 2026 may face compliance violations.</p>
-                        <a href="https://www.iso.org/standard/81230.html" class="card-link" target="_blank">Read Official Source →</a>
-                    </article>
-                </div>
-            </section>
-            
-            <section class="actions-section">
-                <h3 class="section-title">💡 Recommended Actions for UiPath</h3>
-                <ul class="action-list">
-                    <li class="action-item">
-                        <span class="action-icon">✓</span>
-                        <div class="action-content">
-                            <h4>Assess EU AI Act High-Risk Classification for UiPath Products <span class="action-priority priority-high">HIGH</span></h4>
-                            <p>Conduct urgent assessment of Document Understanding, AI Center, and Communications Mining to determine if they fall under Annex III high-risk categories (employment, critical infrastructure, education). Product Legal to lead with Engineering by May 2026. Conformity assessment deadline is August 2, 2026.</p>
-                        </div>
-                    </li>
-                    <li class="action-item">
-                        <span class="action-icon">✓</span>
-                        <div class="action-content">
-                            <h4>Monitor UK FCA Mills Review for Financial Services Impact <span class="action-priority priority-medium">MEDIUM</span></h4>
-                            <p>Track FCA Mills Review recommendations expected summer 2026. Prepare proactive guidance for banking and insurance customers on AI governance alignment with FCA principles-based framework. Customer Success to coordinate with Legal.</p>
-                        </div>
-                    </li>
-                    <li class="action-item">
-                        <span class="action-icon">✓</span>
-                        <div class="action-content">
-                            <h4>Evaluate NIST Cyber AI Profile for Security Integration <span class="action-priority priority-medium">MEDIUM</span></h4>
-                            <p>Review NIST Cyber AI Profile draft (NIST IR 8596) for applicability to UiPath's AI security practices. Assess integration opportunities with existing cybersecurity framework, particularly for generative AI features and supply chain security.</p>
-                        </div>
-                    </li>
-                    <li class="action-item">
-                        <span class="action-icon">✓</span>
-                        <div class="action-content">
-                            <h4>Consider ISO 42001 Certification for Competitive Advantage <span class="action-priority priority-low">LOW</span></h4>
-                            <p>Evaluate feasibility of pursuing ISO/IEC 42001:2023 certification to demonstrate systematic AI governance. This could serve as competitive differentiator for enterprise customers preparing for EU AI Act compliance. Engage Quality and Compliance teams for feasibility assessment.</p>
-                        </div>
-                    </li>
-                </ul>
-            </section>
-        </main>
-        
-        <footer class="footer">
-            <p>Compiled by <strong>Delegate</strong> | UiPath Agentic Automation</p>
-            <p>Sources: EU Commission (europa.eu), UK FCA (fca.org.uk), US NIST (nist.gov), ISO (iso.org)</p>
-            <div class="footer-links">
-                <a href="https://megeanina.github.io/theresponsiblereview/" target="_blank">📰 Latest Issue</a>
-                <a href="https://uipath.com" target="_blank">🏢 UiPath</a>
-            </div>
-        </footer>
-    </div>
-</body>
-</html>
+🤖 Responsible Review
+AI Regulation Intelligence for UiPath
+March 31, 2026 | Issue #002
+🔥 TOP STORY
+White House Unveils National AI Policy Framework
+On March 20, 2026, the White House released its "National Policy Framework for Artificial Intelligence," outlining legislative recommendations for Congress. The framework aims to create a unified federal approach to AI regulation, preempting the growing patchwork of state-level AI laws. Key focus areas include child safety, consumer protection, national security, intellectual property, and enabling innovation while protecting free speech.
+📍 US
+⚡ High Impact
+📅 March 20, 2026
+🔗 Read Official Source
+📰 Today's Highlights
+White House National AI Policy Framework Released
+US
+HIGH IMPACT
+The White House unveiled its National Policy Framework for AI on March 20, 2026, providing legislative recommendations for Congress. The framework emphasizes federal preemption over state AI laws, child safety protections, consumer safeguards against AI-enabled fraud, national security measures, intellectual property protections, and workforce development. This represents a significant move toward unified federal AI regulation.
+Read Official Source →
+EU Parliament Adopts AI Act Implementation Timeline Adjustments
+EU
+HIGH IMPACT
+On March 26, 2026, Members of the European Parliament adopted proposals to simplify AI Act rules and provide legal certainty. Key adjustments include proposed delays for high-risk systems compliance until December 2, 2027, and AI in regulated products until August 2, 2028. Watermarking rules apply from November 2, 2026. The "AI Omnibus" proposal now moves to trialogue negotiations between Parliament, Commission, and Council.
+Read Official Source →
+UK FCA Announces AI-Powered "Smarter Regulation" Initiative
+UK
+MEDIUM IMPACT
+The UK Financial Conduct Authority announced in March 2026 its plans for "smarter, more effective regulation" leveraging AI. The FCA will use generative AI to review documents submitted by firms, leading to faster authorization decisions. This initiative is part of the FCA's 2026/27 work programme focusing on becoming a smarter regulator, supporting economic growth, helping consumers, and fighting financial crime.
+Read Official Source →
+NIST Releases Report on AI System Monitoring Challenges
+US
+MEDIUM IMPACT
+On March 9, 2026, NIST released "NIST AI 800-4: Challenges to the Monitoring of Deployed AI Systems." The report outlines current challenges in effectively monitoring AI systems in real-world applications and identifies areas for future research. Additionally, NIST's Center for AI Standards and Innovation concluded its public comment period on AI agent security risks on March 9, 2026.
+Read Official Source →
+💡 Recommended Actions for UiPath
+	•	✓ Monitor US Federal AI Policy Developments HIGH Track the White House National AI Policy Framework as it moves through Congress. Assess potential impact on UiPath's US operations, particularly regarding federal preemption of state AI laws, consumer protection requirements, and AI-enabled fraud prevention measures. Product Legal to monitor legislative progress.  ✓ Assess EU AI Act Timeline Adjustments HIGH Review the proposed EU AI Act implementation timeline changes (high-risk systems to December 2027, regulated products to August 2028). Update compliance roadmap accordingly. Note that watermarking requirements still apply from November 2, 2026. Product Legal to track trialogue negotiation outcomes.  ✓ Evaluate UK FCA AI Regulatory Approach MEDIUM Monitor the FCA's AI-powered "smarter regulation" initiative and its impact on financial services customers. The FCA's use of AI for document review may affect authorization timelines for banking and insurance clients. Customer Success to coordinate with UK financial services customers.  ✓ Review NIST AI Monitoring Guidelines MEDIUM Study NIST AI 800-4 report on monitoring challenges for deployed AI systems. Apply insights to UiPath's AI Center and Document Understanding monitoring practices. Engineering to assess integration opportunities with existing observability frameworks. 
+Compiled by Delegate | UiPath Agentic Automation
+Sources: White House (whitehouse.gov), EU Parliament (europarl.europa.eu), UK FCA (fca.org.uk), NIST (nist.gov)
+📰 Latest Issue
+🏢 UiPath
